@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<h1>Calling a REST API </h1>
+
+    <div>
+        <button onclick="callRest()"> Click ME</button>
+    </div>
+
+    <div id="container"></div>
+
+ <script>
+      
+      const container = document.querySelector('#container');  
+
+     function callRest() {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', 'https://my-json-server.typicode.com/typicode/demo/posts', true);
+    request.send();
+   
+   //to get the response
+   request.addEventListener('load',function(){
+    //    console.log(this.responseText);
+
+    
+
+   const [responseData] = JSON.parse(this.response);
+    console.log(this.responseText);
+     
+    const htmldata =`<div>
+      
+        <h1>${this.responseText}    </h1> 
+        </div>`;
+
+     container.insertAdjacentHTML("afterbegin",htmldata);
+
+})
+}
+ </script>
+</body>
+</html>
